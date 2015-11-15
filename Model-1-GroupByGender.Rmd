@@ -1,0 +1,34 @@
+---
+title: "Kaggle 101 Titanic Problem in R"
+author: "Sadanand Singh"
+date: "November 15, 2015"
+output: html_document
+---
+
+This is my step-by-step soluton to the 101 level problem at Kaggle - [Titanic: Machine Learning from Disaster](https://www.kaggle.com/c/titanic). The full data sets (test and train) should be obtained from the kaggle website. The detailed R scripts can be found at my [github repo](https://github.com/sadanand-singh/kaggle-titanic).
+
+First, We will load the data train and test data sets and understand a few details of these.
+
+```{r}
+# Import the training set: train
+train_url <- "http://s3.amazonaws.com/assets.datacamp.com/course/Kaggle/train.csv"
+train <- read.csv(train_url,fill = TRUE, header=TRUE)
+  
+# Import the testing set: test
+test_url <- "http://s3.amazonaws.com/assets.datacamp.com/course/Kaggle/test.csv"
+test <- read.csv(test_url,fill = TRUE, header=TRUE)
+```
+
+Let’s take a quick look at the structure of the dataframe, ie the types of variables that were loaded. We will use the str command for this:
+
+```{r}
+str(train)
+```
+
+First thing we notice that two columns, _Survived_ and _Pclass_ have not been imported as factors, rather as continuous integers. Lets convert these to factors.
+
+```{R}
+train <- within(train,Survived <- as.factor(Survived))
+train <- within(train,Pclass <- as.factor(Pclass))
+str(train)
+```
