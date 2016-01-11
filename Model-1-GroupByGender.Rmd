@@ -12,11 +12,11 @@ First, We will load the data train and test data sets and understand a few detai
 ```{r}
 # Import the training set: train
 train_url <- "http://s3.amazonaws.com/assets.datacamp.com/course/Kaggle/train.csv"
-train <- read.csv(train_url,fill = TRUE, header=TRUE)
+train <- read.csv(train_url,fill = TRUE, header=TRUE, stringsAsFactors=FALSE)
   
 # Import the testing set: test
 test_url <- "http://s3.amazonaws.com/assets.datacamp.com/course/Kaggle/test.csv"
-test <- read.csv(test_url,fill = TRUE, header=TRUE)
+test <- read.csv(test_url,fill = TRUE, header=TRUE, stringsAsFactors=FALSE)
 ```
 
 Let’s take a quick look at the structure of the dataframe, ie the types of variables that were loaded. We will use the str command for this:
@@ -30,5 +30,5 @@ First thing we notice that two columns, _Survived_ and _Pclass_ have not been im
 ```{R}
 train <- within(train,Survived <- as.factor(Survived))
 train <- within(train,Pclass <- as.factor(Pclass))
-str(train)
+summary(train)
 ```
